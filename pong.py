@@ -19,6 +19,11 @@ wn.setup(width=800, height=600)
 #stops window from updating
 wn.tracer(0)
 
+# Score
+score_a = 0
+score_b = 0
+
+
 #paddle 1 parameters
 paddle_1 = turtle.Turtle()
 paddle_1.speed(0)
@@ -50,7 +55,17 @@ ball.goto(0, 0)
 ball.dx = .1
 ball.dy = .1
 
+# Pen
+pen = turtle.Turtle()
+pen.speed(0)
+pen.shape("square")
+pen.color("white")
+pen.penup()
+pen.hideturtle()
+pen.goto(0, 260)
+pen.write("Player A: 0  Player B: 0", align="center", font=("Courier", 24, "normal"))
 
+#
 #functions for animation
 def paddle_1_up():
     #returns paddle coordinate
@@ -101,22 +116,32 @@ while True:
     ball.sety(ball.ycor() + ball.dy)
 
 
-    #border checking
+     # Top and bottom
     if ball.ycor() > 290:
         ball.sety(290)
         ball.dy *= -1
-
-    if ball.ycor() < -290:
+      
+    
+    elif ball.ycor() < -290:
         ball.sety(-290)
         ball.dy *= -1
-
-    if ball.xcor() > 390:
-        ball.goto(0,0)
-        ball.dx *= -1
         
-    if ball.xcor() < -390:
-        ball.goto(0,0)
+
+    # Left and right
+    if ball.xcor() > 350:
+        score_a += 1
+        pen.clear()
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
+        ball.goto(0, 0)
         ball.dx *= -1
+
+    elif ball.xcor() < -350:
+        score_b += 1
+        pen.clear()
+        pen.write("Player A: {}  Player B: {}".format(score_a, score_b), align="center", font=("Courier", 24, "normal"))
+        ball.goto(0, 0)
+        ball.dx *= -1
+
 
     #paddle collision
     if ball.xcor() < -340 and ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() - 50:
