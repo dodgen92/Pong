@@ -46,7 +46,9 @@ ball.color("white")
 ball.shapesize(stretch_wid=1, stretch_len=1)
 ball.penup()
 ball.goto(0, 0)
-
+#sets ball to move by 2 pixels on x and y coordinates
+ball.dx = .5
+ball.dy = .5
 #functions for animation
 def paddle_1_up():
     #returns paddle coordinate
@@ -91,3 +93,7 @@ wn.onkeypress(paddle_2_down, "Down")
 #main game loop
 while True:
     wn.update()
+
+    #move ball
+    ball.setx(ball.xcor() + ball.dx)
+    ball.sety(ball.ycor() + ball.dy)
