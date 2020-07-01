@@ -47,8 +47,10 @@ ball.shapesize(stretch_wid=1, stretch_len=1)
 ball.penup()
 ball.goto(0, 0)
 #sets ball to move by 2 pixels on x and y coordinates
-ball.dx = .5
-ball.dy = .5
+ball.dx = .25
+ball.dy = .25
+
+
 #functions for animation
 def paddle_1_up():
     #returns paddle coordinate
@@ -97,3 +99,21 @@ while True:
     #move ball
     ball.setx(ball.xcor() + ball.dx)
     ball.sety(ball.ycor() + ball.dy)
+
+
+    #border checking
+    if ball.ycor() > 290:
+        ball.sety(290)
+        ball.dy *= -1
+
+    if ball.ycor() < -290:
+        ball.sety(-290)
+        ball.dy *= -1
+
+    if ball.xcor() > 390:
+        ball.goto(0,0)
+        ball.dx *= -1
+        
+    if ball.xcor() < -390:
+        ball.goto(0,0)
+        ball.dx *= -1
