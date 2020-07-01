@@ -47,8 +47,8 @@ ball.shapesize(stretch_wid=1, stretch_len=1)
 ball.penup()
 ball.goto(0, 0)
 #sets ball to move by 2 pixels on x and y coordinates
-ball.dx = .25
-ball.dy = .25
+ball.dx = .1
+ball.dy = .1
 
 
 #functions for animation
@@ -117,3 +117,13 @@ while True:
     if ball.xcor() < -390:
         ball.goto(0,0)
         ball.dx *= -1
+
+    #paddle collision
+    if ball.xcor() < -340 and ball.ycor() < paddle_1.ycor() + 50 and ball.ycor() > paddle_1.ycor() - 50:
+        ball.dx *= -1 
+
+    
+    elif ball.xcor() > 340 and ball.ycor() < paddle_2.ycor() + 50 and ball.ycor() > paddle_2.ycor() - 50:
+        ball.dx *= -1
+        
+ 
